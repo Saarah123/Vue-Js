@@ -1,5 +1,5 @@
 <template>
-  <button @click="sendMessageToSibling">HELLO FROM KID :)</button>
+  <button @click="sendMessageToSibling">HELLO FROM YOUR CHILDREN:)</button>
   </template>
   
   <script>

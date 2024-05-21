@@ -6,7 +6,6 @@ const store = createStore({
     users: [],
     filteredUsers: [],
     searchQuery: '', 
-    
   },
   mutations: {
     setUsers(state, users) {
@@ -19,21 +18,18 @@ const store = createStore({
       console.log('Search Query set:', state.searchQuery);
     },
     setFilterUsers(state) {
-        const searchQuery = state.searchQuery.toLowerCase();
-        if (searchQuery) {
-          state.filteredUsers = state.users.filter(user =>
-            ['userId', 'id', 'title', 'body'].some(key =>
-              String(user[key]).toLowerCase().includes(searchQuery)
-            )
-          );
-        } else {
-          state.filteredUsers = state.users;
-        }
+      const searchQuery = state.searchQuery.toLowerCase();
+      if (searchQuery) {
+        state.filteredUsers = state.users.filter(user =>
+          ['userId', 'id', 'title', 'body'].some(key =>
+            String(user[key]).toLowerCase().includes(searchQuery)
+          )
+        );
+      } else {
+        state.filteredUsers = state.users;
       }
-      
-      
+    }
   },
-  
   actions: {
     async fetchUsers({ commit }) {
       try {
@@ -45,7 +41,7 @@ const store = createStore({
     },
     searchUsers({ commit }, query) {
       commit('setSearchQuery', query);
-      commit('setFilterUsers',query);
+      commit('setFilterUsers', query);
     },
   },
   getters: {
