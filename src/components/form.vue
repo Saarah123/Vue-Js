@@ -90,7 +90,7 @@ export default {
           });
         }
         errors.value = validationErrors;
-        alert('There are errors in the form');
+        alert('Please select the field');
         console.log('Validation errors:', err);
       }
     };
