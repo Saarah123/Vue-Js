@@ -1,21 +1,15 @@
 <template>
+
+
   <div class="row">
+
     <div class="col-4">
-      <input
-        v-model="searchQuery"
-        @input="handleSearchInput"
-        type="text"
-        placeholder="Search users..."
-        class="form-control"
-      />
+      <input v-model="searchQuery" @input="handleSearchInput" type="text" placeholder="Search users..."
+        class="form-control" />
     </div>
-    
+
     <div class="col-4">
-      <select
-        v-model="selectedFilter"
-        @change="handleFilterChange"
-        class="form-control"
-      >
+      <select v-model="selectedFilter" @change="handleFilterChange" class="form-control">
         <option v-for="option in filterOptions" :key="option" :value="option">
           {{ option }}
         </option>
@@ -106,34 +100,36 @@ export default {
 .container {
   padding: 20px;
 }
-.row{
-  display:flex;
-  gap:5px;
-  margin-left:10%
+
+.row {
+  display: flex;
+  gap: 5px;
+  margin-left: 10%
 }
+
 .table {
   width: 100%;
   border-collapse: collapse;
 }
-.table th, .table td {
+
+.table th,
+.table td {
   border: 1px solid black;
   padding: 8px;
   text-align: left;
 }
+
 .pagination {
   display: flex;
-  gap:10px;
+  gap: 10px;
 }
-.button{
+
+.button {
   border: 1px solid black;
   background-color: rgb(144, 184, 233);
   height: 50px;
   width: 100px;
   border-radius: 2px;
-  margin-right:10px
+  margin-right: 10px
 }
 </style>
-
-  
- 
-  

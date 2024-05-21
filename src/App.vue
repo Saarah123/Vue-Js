@@ -1,28 +1,27 @@
 <template>
-  
-  
-     
-      <div class="container">
-      
-        <div class="box-container">
-          <ParentComponent/>
-        </div>
-        <div class="box-container">
-          <ChildComponent/>
-        </div>
-        <div class="box-container">
-          <Child/>
-        </div>
-       
-      </div>
 
-     
-   
-  <UserList />
-  <div  class="form">
-    <Form/>
+
+  <div class="container">
+
+    <div class="box-container">
+      <ParentComponent />
+    </div>
+    <div class="box-container">
+      <ChildComponent />
+    </div>
+    <div class="box-container">
+      <Child />
+    </div>
+
   </div>
- 
+
+
+
+  <UserList />
+  <div class="form">
+    <Form />
+  </div>
+
 </template>
 
 <script>
@@ -50,17 +49,20 @@ export default {
 .container {
   display: flex;
   gap: 20%;
-  margin-left:5%;
+  margin-left: 5%;
 }
+
 .box-container {
   border: 1px solid black;
   padding: 10px;
   margin-top: 5%;
+  background-color: lavender;
 }
-.form{
+
+.form {
   margin: 5% 10% 5% 30%;
   height: 300px;
-  width:500px;
+  width: 500px;
 
 
 }
