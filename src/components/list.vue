@@ -1,15 +1,15 @@
 <template>
-  <div  class="row">
+  <div class="row">
     <div class="col-4">
       <input
         v-model="searchQuery"
-        @input="searchUsers"
+        @input="handleSearchInput"
         type="text"
         placeholder="Search users..."
         class="form-control"
       />
     </div>
-    <!-- Uncomment if filter functionality is needed -->
+    
     <div class="col-4">
       <select
         v-model="selectedFilter"
@@ -23,30 +23,34 @@
     </div>
   </div>
   <div class="container">
-  
     <div class="row">
       <div class="col-12">
         <table class="table">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Title</th>
-              <th>Body</th>
+              <th>Name</th>
+              <th>E-mail</th>
+              <th>Address</th>
+              <th>Company</th>
+              <th>Phone</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="user in paginatedUsers" :key="user.id">
               <td>{{ user.id }}</td>
-              <td>{{ user.title }}</td>
-              <td>{{ user.body }}</td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.address.city }}</td>
+              <td>{{ user.company.name }}</td>
+              <td>{{ user.phone }}</td>
             </tr>
           </tbody>
         </table>
       </div>
-    </div>  
+    </div>
   </div>
   <div class="row">
-
     <div class="col-12">
       <button class="button" @click="changePage(page - 1)" :disabled="page === 1">Previous</button>
       <button class="button" @click="changePage(page + 1)" :disabled="page === totalPages">Next</button>
@@ -54,7 +58,6 @@
   </div>
 </template>
 
-  
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex';
 
@@ -63,9 +66,9 @@ export default {
     return {
       page: 1,
       pageSize: 5,
-      searchQuery: '', 
-      selectedFilter: 'All', 
-      filterOptions: ['All', 'ID', 'Title', 'Body'], 
+      searchQuery: '',
+      selectedFilter: 'All',
+      filterOptions: ['All', 'ID', 'Name', 'City', 'Company'],
     };
   },
   computed: {
@@ -79,13 +82,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['fetchUsers', 'searchUsers']),
-    searchUsers() {
+    ...mapActions(['fetchUsers', 'searchUsers', 'setFilterUsers']),
+    handleSearchInput() {
       this.$store.dispatch('searchUsers', this.searchQuery);
     },
     handleFilterChange() {
-      this.$store.dispatch('setSearchQuery', '');
-      this.$store.dispatch('setFilterUsers', this.selectedFilter);
+      this.$store.dispatch('setFilterUsers', this.selectedFilter.toLowerCase());
     },
     changePage(newPage) {
       if (newPage > 0 && newPage <= this.totalPages) {
@@ -98,6 +100,7 @@ export default {
   },
 };
 </script>
+
 
 <style>
 .container {
